@@ -19,5 +19,14 @@ public class Strings {
 		String fraseReplace = fraseNormal.replace("abacaxi", "limao");
 		System.out.println(fraseReplace);
 		
+		int indexAbacaxi = fraseNormal.indexOf("banana");
+		int ultimaAbacaxi = fraseNormal.lastIndexOf("abacaxi");
+		
+		System.out.println(indexAbacaxi);
+		System.out.println(ultimaAbacaxi);
+		
+		String[] vet = fraseNormal.split(" ");
+		System.out.println(vet[1]);
+		
 	}
 }
