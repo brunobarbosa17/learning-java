@@ -47,7 +47,7 @@ public class CartaoPrePago {
 	}
 	
 	public void adicionarCredito(double valor) {
-		setSaldo(valor);
+		setSaldo(getSaldo() + valor);
 	}
 	
 	public boolean comprar(double valor) {
@@ -57,6 +57,15 @@ public class CartaoPrePago {
 		} else {
 			return false;
 		}
+	}
+	
+	public void exibirDados() {
+		System.out.println("Nome do titular: "+ getNomeTitular());
+		System.out.println("Numero do cartao: "+ getNumeroCartao());
+		System.out.println("Ano de validade: "+ getAnoValidade());
+		System.out.println("Mes de validade: "+ getMesValidade());
+		System.out.println("Saldo do cartao: "+ getSaldo());
+		
 	}
 	
 	
