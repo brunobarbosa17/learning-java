@@ -15,5 +15,6 @@ public class Main {
     ContaEspecial contaBrunoEspecial = new ContaEspecial("Bruninho", "31413", 150, 300);
     contaBrunoEspecial.debitar(500);
     contaBrunoEspecial.exibirInfo();
+    System.out.println(contaBrunoEspecial);
   }
 }
