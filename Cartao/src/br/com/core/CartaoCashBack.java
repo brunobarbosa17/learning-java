@@ -5,8 +5,9 @@ public class CartaoCashBack extends Cartao {
   protected int tipoCartao;
   protected double porcentagemVolta;
 
-  public CartaoCashBack(String numeroCartao, String nomeTitular, int anoValidade, int mesValidade, double saldo) {
+  public CartaoCashBack(String numeroCartao, String nomeTitular, int anoValidade, int mesValidade, double saldo, int tipoCartao) {
     super(numeroCartao, nomeTitular, anoValidade, mesValidade, saldo);
+    this.tipoCartao = tipoCartao;
     switch (tipoCartao) {
       case 0:
         this.porcentagemVolta = 0.02;
@@ -20,6 +21,7 @@ public class CartaoCashBack extends Cartao {
     }
   }
 
+  @Override
   public boolean comprar(double valor) {
     if (super.getSaldo() >= valor) {
       double volta = valor * porcentagemVolta;
