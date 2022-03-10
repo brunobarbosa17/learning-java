@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.alura.forum.modelo.Topico;
+import org.jetbrains.annotations.NotNull;
 
 public class TopicoDto {
 
@@ -13,7 +14,7 @@ public class TopicoDto {
 	private String mensagem;
 	private LocalDateTime dataCriacao;
 	
-	public TopicoDto(Topico topico) {
+	public TopicoDto(@NotNull Topico topico) {
 		this.id = topico.getId();
 		this.titulo = topico.getTitulo();
 		this.mensagem = topico.getMensagem();
