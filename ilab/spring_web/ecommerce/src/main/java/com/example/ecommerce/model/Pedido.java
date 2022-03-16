@@ -1,30 +1,40 @@
 package com.example.ecommerce.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "pedido")
 public class Pedido {
 
-  @Id @Column(name = "numero", unique = true)
+  @Id
+  @Column(name="numero")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer numero;
 
   @Column(name = "data")
-  private LocalDateTime data;
+  private LocalDate data;
 
   @Column(name = "valor_bruto")
-  private Double valor_bruto;
+  private Double valorBruto;
 
   @Column(name = "desconto")
   private Double desconto;
 
   @Column(name = "valor_total")
-  private Double valor_total;
+  private Double valorTotal;
 
-  @Column(name = "num_cliente", nullable = false)
-  private Integer num_cliente;
+  @ManyToOne
+  @JoinColumn(name = "num_cliente")
+  @JsonIgnoreProperties("listaPedidos")
+  private Cliente cliente;
+
+  @OneToMany(mappedBy = "pedido")
+  @JsonIgnoreProperties("pedido")
+  private List<ItemPedido> itens;
 
   public Integer getNumero() {
     return numero;
@@ -34,20 +44,20 @@ public class Pedido {
     this.numero = numero;
   }
 
-  public LocalDateTime getData() {
+  public LocalDate getData() {
     return data;
   }
 
-  public void setData(LocalDateTime data) {
+  public void setData(LocalDate data) {
     this.data = data;
   }
 
-  public Double getValor_bruto() {
-    return valor_bruto;
+  public Double getValorBruto() {
+    return valorBruto;
   }
 
-  public void setValor_bruto(Double valor_bruto) {
-    this.valor_bruto = valor_bruto;
+  public void setValorBruto(Double valorBruto) {
+    this.valorBruto = valorBruto;
   }
 
   public Double getDesconto() {
@@ -58,19 +68,31 @@ public class Pedido {
     this.desconto = desconto;
   }
 
-  public Double getValor_total() {
-    return valor_total;
+  public Double getValorTotal() {
+    return valorTotal;
   }
 
-  public void setValor_total(Double valor_total) {
-    this.valor_total = valor_total;
+  public void setValorTotal(Double valorTotal) {
+    this.valorTotal = valorTotal;
   }
 
-  public Integer getNum_cliente() {
-    return num_cliente;
+  public Cliente getCliente() {
+    return cliente;
   }
 
-  public void setNum_cliente(Integer num_cliente) {
-    this.num_cliente = num_cliente;
+  public void setCliente(Cliente cliente) {
+    this.cliente = cliente;
   }
+
+  public List<ItemPedido> getItens() {
+    return itens;
+  }
+
+  public void setItens(List<ItemPedido> itens) {
+    this.itens = itens;
+  }
+
+
+
+
 }

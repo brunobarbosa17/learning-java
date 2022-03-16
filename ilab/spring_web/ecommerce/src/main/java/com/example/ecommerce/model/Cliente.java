@@ -1,33 +1,37 @@
 package com.example.ecommerce.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "cliente")
 public class Cliente {
+  @Id
+  @Column(name = "numero")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer numero;
 
-  @Column(name = "numero", nullable = false) @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private String numero;
-
-  @Column(name = "nome", nullable = false, length = 100)
+  @Column(name = "nome", length = 100, nullable = false)
   private String nome;
 
-  @Column(name = "cpf", nullable = false, unique = true)
+  @Column(name = "cpf", length = 11, nullable = false, unique = true)
   private String cpf;
 
-  @Column(name="email", nullable = false, unique = true)
+  @Column(name="email", length = 50, nullable = false, unique = true)
   private String email;
 
   @Column(name = "telefone", nullable = false)
   private Integer telefone;
 
-  @Column(name = "logradouro", nullable = false, length = 50)
+  @Column(name = "logradouro", length = 50,  nullable = false)
   private String logradouro;
 
-  @Column(name = "numero_residencia")
-  private int numero_residencia;
+  @Column(name = "num_res")
+  private Integer numRes;
 
-  @Column(name = "complemento", length = 30)
+  @Column(name = "compl", length = 30)
   private String complemento;
 
   @Column(name = "bairro", length = 30)
@@ -36,17 +40,22 @@ public class Cliente {
   @Column(name = "cidade", length = 30)
   private String cidade;
 
-  @Column(name = "estado", nullable = false ,length = 2)
+  @Column(name = "estado", length = 2, nullable = false)
   private String estado;
 
   @Column(name = "cep", length = 8)
   private String cep;
 
-  public String getNumero() {
+  @OneToMany(mappedBy = "cliente")
+  @JsonIgnoreProperties("cliente")
+  private List<Pedido> listaPedidos;
+
+
+  public Integer getNumero() {
     return numero;
   }
 
-  public void setNumero(String numero) {
+  public void setNumero(Integer numero) {
     this.numero = numero;
   }
 
@@ -90,12 +99,12 @@ public class Cliente {
     this.logradouro = logradouro;
   }
 
-  public int getNumero_residencia() {
-    return numero_residencia;
+  public Integer getNumRes() {
+    return numRes;
   }
 
-  public void setNumero_residencia(int numero_residencia) {
-    this.numero_residencia = numero_residencia;
+  public void setNumRes(Integer numRes) {
+    this.numRes = numRes;
   }
 
   public String getComplemento() {
@@ -136,5 +145,13 @@ public class Cliente {
 
   public void setCep(String cep) {
     this.cep = cep;
+  }
+
+  public List<Pedido> getListaPedidos() {
+    return listaPedidos;
+  }
+
+  public void setListaPedidos(List<Pedido> listaPedidos) {
+    this.listaPedidos = listaPedidos;
   }
 }

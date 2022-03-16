@@ -1,6 +1,9 @@
 package com.example.ecommerce.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity /* Entity - Classes que são mapeadas para uma tabela */
 @Table(name="departamento") // Especificando que o nome da tabela no banco tem que ser igual ao parametro name
@@ -17,7 +20,17 @@ public class Departamento {
   @Column(name = "andar")
   private Integer andar;
 
+  @OneToMany(mappedBy = "depto")
+  @JsonIgnoreProperties("depto")
+  private List<Produto> listaProdutos;
 
+
+  public List<Produto> getListaProdutos() {
+    return listaProdutos;
+  }
+  public void setListaProdutos(List<Produto> listaProdutos) {
+    this.listaProdutos = listaProdutos;
+  }
   public Integer getNumero() {
     return numero;
   }

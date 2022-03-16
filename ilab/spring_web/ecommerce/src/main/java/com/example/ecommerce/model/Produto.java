@@ -1,42 +1,58 @@
 package com.example.ecommerce.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "produto")
 public class Produto {
-
-  @Column(name = "codigo", nullable = false, unique = true) @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Id
+  @Column(name = "codigo")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer codigo;
 
-  @Column(name = "nome", nullable = false, length = 50)
+  @Column(name = "nome", length = 50, nullable = false)
   private String nome;
 
-  @Column(name = "descricao")
+  @Column(name = "descricao", columnDefinition = "TEXT")
   private String descricao;
 
   @Column(name = "preco")
   private Double preco;
 
-  @Column(name = "quantidade_estoque")
-  private Integer quantidade_estoque;
+  @Column(name="qtd_estoque")
+  private Integer qtdEstoque;
 
-  @Column(name = "link_foto", length = 255)
-  private String link_foto;
+  @Column(name="link_foto", length = 255)
+  private String linkFoto;
 
-  @ManyToOne
-  @JoinColumn(name = "num_depto")
+  @ManyToOne					// esta anotação indica que há uma relação N:1 com Departamento
+  @JoinColumn(name = "num_depto") // como o nome da coluna que é FK é diferente do nome da PK de Departamento, então preciso explicitar
+  @JsonIgnoreProperties("listaProdutos")
   private Departamento depto;
 
-  public Departamento getDepto() {
-		return depto;
-	}
 
-	public void setDepto(Departamento depto) {
-		this.depto = depto;
-	}
+  public Produto() {
+    // nao faz nadica de nada!!!
+  }
 
-	public Integer getCodigo() {
+  public Produto(Integer codigo, String nome, String descricao, Double preco, Integer qtdEstoque, String linkFoto,
+                 Integer numeroDepto, String nomeDepto, Integer andarDepto) {
+    super();
+    this.codigo = codigo;
+    this.nome = nome;
+    this.descricao = descricao;
+    this.preco = preco;
+    this.qtdEstoque = qtdEstoque;
+    this.linkFoto = linkFoto;
+    this.depto = new Departamento();
+    this.depto.setNumero(numeroDepto);
+    this.depto.setNome(nomeDepto);
+    this.depto.setAndar(andarDepto);
+  }
+
+  public Integer getCodigo() {
     return codigo;
   }
 
@@ -68,21 +84,28 @@ public class Produto {
     this.preco = preco;
   }
 
-  public Integer getQuantidade_estoque() {
-    return quantidade_estoque;
+  public Integer getQtdEstoque() {
+    return qtdEstoque;
   }
 
-  public void setQuantidade_estoque(Integer quantidade_estoque) {
-    this.quantidade_estoque = quantidade_estoque;
+  public void setQtdEstoque(Integer qtdEstoque) {
+    this.qtdEstoque = qtdEstoque;
   }
 
-  public String getLink_foto() {
-    return link_foto;
+  public String getLinkFoto() {
+    return linkFoto;
   }
 
-  public void setLink_foto(String link_foto) {
-    this.link_foto = link_foto;
+  public void setLinkFoto(String linkFoto) {
+    this.linkFoto = linkFoto;
   }
 
-  
+  public Departamento getDepto() {
+    return depto;
+  }
+
+  public void setDepto(Departamento depto) {
+    this.depto = depto;
+  }
+
 }
