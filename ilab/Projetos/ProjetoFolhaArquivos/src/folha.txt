@@ -1,0 +1,4 @@
+1    ; 1234 ; Roberto Chefe ; 10000.00 ;   15.00   ; 2500.00
+2    ; 1235 ; Joana Comissionada ; 2000.00  ; 20.00
+3    ; 1236 ; João Horista  ;   100     ; 50.35
+4    ; 1237 ; Pedro Empreiteiro ; 3500.00

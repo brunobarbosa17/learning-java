@@ -1,0 +1,4 @@
+Bruninho ; 5 ; 7.8
+Lucas; 7 ; 9
+Santos; 5 ; 5
+Barbosa; 8 ; 3
