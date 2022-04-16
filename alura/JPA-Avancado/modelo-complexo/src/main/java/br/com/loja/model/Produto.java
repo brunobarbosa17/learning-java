@@ -7,6 +7,8 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "produtos")
+@NamedQuery(name = "Produto.produtosPorCategoria",
+        query = "SELECT p FROM Produto p WHERE p.categoria.nome = :nomeCategoria")
 public class Produto {
 
   @Id
@@ -17,7 +19,7 @@ public class Produto {
   private BigDecimal preco;
   private LocalDate dataCadastro = LocalDate.now();
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   private Categoria categoria;
 
   public Produto() {
