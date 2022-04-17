@@ -1,6 +1,6 @@
 package br.com.alura.springdata.repository;
 
-import br.com.alura.springdata.model.Cargo;
+import br.com.alura.springdata.orm.Cargo;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
