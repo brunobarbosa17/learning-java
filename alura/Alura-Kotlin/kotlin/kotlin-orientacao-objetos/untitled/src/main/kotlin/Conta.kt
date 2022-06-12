@@ -1,8 +1,8 @@
-class Conta(titular: String, numero: Int) {
+class Conta(
+  val titular: String,
+  val numero: Int) {
 
-  var titular = "";
-  var numero = 0;
-  private var saldo = 0.0
+  var saldo = 0.0
     private set;
 
 
@@ -29,8 +29,5 @@ class Conta(titular: String, numero: Int) {
     return false;
   }
 
-  fun getSaldo(): Double {
-    return saldo;
-  }
 
 }
