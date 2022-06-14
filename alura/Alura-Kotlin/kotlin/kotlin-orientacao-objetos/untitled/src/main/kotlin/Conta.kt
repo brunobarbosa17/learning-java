@@ -1,4 +1,4 @@
-class Conta(
+abstract class Conta(
   val titular: String,
   val numero: Int) {
 
@@ -10,7 +10,7 @@ class Conta(
     this.saldo += valor;
   }
 
-  fun sacar(valor: Double): Boolean {
+  open fun sacar(valor: Double): Boolean {
     if (saldo - valor >= 0.0) {
       saldo -= valor;
       return true;
