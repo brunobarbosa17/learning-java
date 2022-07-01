@@ -15,6 +15,9 @@ public class GeradorDePagamento {
 	@Autowired
 	private PagamentoDao pagamentos;
 
+	public GeradorDePagamento(PagamentoDao pagamentoDao) {
+	}
+
 	public void gerarPagamento(Lance lanceVencedor) {
 		LocalDate vencimento = LocalDate.now().plusDays(1);
 		Pagamento pagamento = new Pagamento(lanceVencedor, vencimento);
